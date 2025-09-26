@@ -23,8 +23,8 @@ import seaborn as sns
 #        Should contain "Experiment", "Proteins", "Modifications" and "MS/MS count" columns.
 #   output_dir : output folder path provided as str
 
-input_file = r"C:\Users\brune\deamidation\Input_files\combined\txt\evidence.txt" #add correct path
-output_dir = r"C:\Users\brune\deamidation\Results directory" #add correct path
+input_file = "evidence_test.txt"
+output_dir = "results_directory"
 #------------------------------------------------------------#
 # STEP 2 : Load the MQ evidence output file (Excel or TXT)
 
@@ -55,7 +55,7 @@ maxquant_dataframe = load_evidence_file(input_file)
 #   target_modification : provided as str (exactly as reported in the "Modifications" column)
 #   separated_modified_aa : provided as str (exactly as reported in the "Modified sequence" column)
 #       e.g. "N(Deamidation (NQ))", "Q(Deamidation (NQ))", "S(Phospho (ST))", "T(Phospho (ST)), etc..."
-config_file = r"C:\Users\brune\deamidation\Input_modifications_MQ.xlsx" #add correct path
+config_file = "Input_modifications_MQ_test.xlsx"
 
 # # Fill with labels of modifications to be combined, grouping them according to the example.
 combined_labels = [
