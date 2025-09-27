@@ -55,6 +55,7 @@ maxquant_dataframe = load_evidence_file(input_file)
 #   target_modification : provided as str (exactly as reported in the "Modifications" column)
 #   separated_modified_aa : provided as str (exactly as reported in the "Modified sequence" column)
 #       e.g. "N(Deamidation (NQ))", "Q(Deamidation (NQ))", "S(Phospho (ST))", "T(Phospho (ST)), etc..."
+
 config_file = "Input_modifications_MQ_test.xlsx"
 
 # # Fill with labels of modifications to be combined, grouping them according to the example.
@@ -62,25 +63,30 @@ combined_labels = [
     (["N(Deamidation (NQ))", "Q(Deamidation (NQ))"], "N|Q(Deamidation (NQ))")] #add correct labels to combine
 
 #   uniprot_id : uniprot IDs (e.g. P02668, P02662, etc...) provided as list
-uniprot_id = []  # Leave empty [] to extract all
+uniprot_id = ["P02662", "P02663", "P02666", "P02668"]  # Leave empty [] to extract all
 
 # Define colors and samples sorting into plots
 
-color_map = {
-    'Sample_1': "#8cc5e3",
-    'Sample_2': "#1a80bb",
-    'Sample_3': "#d8a6a6",
-    'Blank': "#b8b8b8"
-    } #add correct sample group names and desidered colors for each of them
+colors = {
+    'AZZURRITE': "#0e38e1c5",
+    'CAS': "#dca8c9",
+    'CINABRO': "#960B0BD7",
+    'CaCO3': "#93afb5",
+    'MINIO': "#d64908",
+    'P02662' : "#ffb3ba",
+    'P02663' : "#ffdfba",
+    'P02666' : "#baffc9",
+    'P02668' : "#bae1ff"
+    }
 
-samples_sorted = ['Sample_1', 'Sample_2', 'Sample_3', 'Blank'] #add correct sample group sorting
+samples_sorted = ["CAS", "MINIO", "CaCO3", "CINABRO", "AZZURRITE"]
 
 mod_color_map = {
     "N(Deamidation (NQ))": "#1f77b4",  # blue
     "Q(Deamidation (NQ))": "#ff7f0e",  # orange
     "S(Phospho (ST))": "#2ca02c",      # green
     "T(Phospho (ST))": "#d62728"       # red
-} #add correct color mapping for modifications
+} 
 
 def extract_uniprot_ids_from_proteins(df):
     """
@@ -1572,7 +1578,7 @@ def plot_GEM_mean_heatmap(GEM_df,
 
 plot_all_modifications_with_error_bars_grouped_by_protein(
     SPEM_and_statistics,
-    color_map=None, 
+    color_map=mod_color_map, 
     figsize=(10, 6), 
     output_dir=output_dir,
     file_format='png', 
@@ -1610,7 +1616,7 @@ plot_SPEM_mean_heatmap_by_modification(
 plot_GEM_modifications_grouped(
     GEM_and_statistics,
     output_dir=output_dir,
-    color_map = color_map,
+    color_map = colors,
     default_color= "skyblue",
     sample_groups_order=samples_sorted
     )
